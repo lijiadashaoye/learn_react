@@ -7,7 +7,7 @@ import One from './components/one/one';
 
 let data = {
     input: '3333',
-    name: 99
+    name: '06'
 }
 
 ReactDOM.render(

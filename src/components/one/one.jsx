@@ -13,7 +13,7 @@ export default class One extends React.Component {
         super(props);
         this.state = {
             fff: 'style 写入样式时，要使用驼峰式',
-            props_data: props.obj.name,
+            props_data: this.props.obj.name,
             input_data: '',
             city: ''
         }
@@ -33,6 +33,7 @@ export default class One extends React.Component {
         // 改变数据的方法 2 异步更新数据
         this.setState(() => this.notin_state = '改变数据的方法')
     }
+
     changeFn = (e, id) => {
         // console.log(e);
         // console.log(id)
@@ -43,6 +44,7 @@ export default class One extends React.Component {
         })
         console.log(this.props)
     }
+
     show_input = (e) => {
         // let kk = e.target.value;
         // this.setState(() => this.state.input_data = kk);  // 这样写会报警告
@@ -50,11 +52,13 @@ export default class One extends React.Component {
             input_data: e.target.value
         });
     }
+
     set_city = (e) => {
         this.setState({
             city: e.target.value
         });
     }
+
     componentWillMount() {  // 组件创建前--created
         console.log('componentWillMount')
     }
@@ -72,14 +76,14 @@ export default class One extends React.Component {
             <img alt='' style={{ width: '100px' }} src={require('Imgs/1.png')}></img><br />
 
             <span style={{ color: 'blue', 'fontWeight': 'bold' }}>{this.state.fff}</span>&nbsp;&nbsp;
-            <button onClick={this.clickFn}>绑定事件，改变组件自己的数据 1</button><br />
+            <button onClick={this.clickFn}>绑定事件，改变组件自己的数据 1 clickFn</button><br />
 
             <span style={{ color: 'red', 'fontWeight': 'bold' }}>{this.notin_state}</span>&nbsp;&nbsp;
-            <button onClick={this.use_state}>绑定事件，改变组件自己的数据 2</button>
+            <button onClick={this.use_state}>绑定事件，改变组件自己的数据 2 use_state</button>
 
             <p className='classd'>使用class样式 </p>
             <p >获取输入属性： {this.state.props_data}</p>
-            <button onClick={(e) => this.changeFn(e, 9)}>传参并改变传入数据</button>
+            <button onClick={(e) => this.changeFn(e, 9)}>传参并改变传入数据 changeFn</button>
 
             <p style={{ color: 'red' }}>使用class样式</p>
             <label htmlFor="labeld">label写法：</label>

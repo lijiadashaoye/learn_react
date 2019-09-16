@@ -6,13 +6,12 @@ import * as serviceWorker from './serviceWorker';
 import One from './components/one/one';
 
 let data = {
-    input: '3333',
-    name: '06'
+    name: '初始化的传入数据'
 }
 
 ReactDOM.render(
     <div>
-        {data.input}
+        <h2>在父组件中：{data.name}</h2>
         <One obj={data} string='string_props' arrary={[1, 2, 3]} />
     </div>,
     document.querySelector('#root')

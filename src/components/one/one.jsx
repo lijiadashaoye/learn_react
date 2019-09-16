@@ -10,8 +10,9 @@ export default class One extends React.Component {
     city = ['北京', '上海', '广州']
 
     constructor(props) {
-        super(props);
-        this.state = {
+        super(props);  // 父子组件传值
+
+        this.state = {   // 当前组件使用的各种变量
             fff: 'style 写入样式时，要使用驼峰式',
             props_data: this.props.obj.name,
             input_data: '',
@@ -86,9 +87,11 @@ export default class One extends React.Component {
             <button onClick={(e) => this.changeFn(e, 9)}>传参并改变传入数据 changeFn</button>
 
             <p style={{ color: 'red' }}>使用class样式</p>
+
             <label htmlFor="labeld">label写法：</label>
             <input id="labeld" defaultValue="设置初始默认值" onChange={this.show_input}></input>&nbsp;
             <span>监听数据的变化：{this.state.input_data}</span>
+            
             <div>
                 <h3>表单</h3>
                 <form>

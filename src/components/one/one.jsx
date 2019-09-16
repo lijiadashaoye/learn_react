@@ -14,9 +14,9 @@ export default class One extends React.Component {
 
         this.state = {   // 当前组件使用的各种变量
             fff: 'style 写入样式时，要使用驼峰式',
-            props_data: this.props.obj.name,
             input_data: '',
-            city: ''
+            city: '',
+            child: ''
         }
     }
     clickFn = (event) => {
@@ -33,6 +33,7 @@ export default class One extends React.Component {
     use_state = () => {
         // 改变数据的方法 2 异步更新数据
         this.setState(() => this.notin_state = '改变数据的方法')
+        console.log(this.notin_state)
     }
 
     changeFn = (e, id) => {
@@ -40,9 +41,6 @@ export default class One extends React.Component {
         // console.log(id)
 
         this.props.obj.name = '改变了传入数据';
-        this.setState({
-            props_data: this.props.obj.name
-        })
         console.log(this.props)
     }
 
@@ -58,16 +56,23 @@ export default class One extends React.Component {
         this.setState({
             city: e.target.value
         });
+        console.log(this.state.city)
     }
 
-    componentWillMount() {  // 组件创建前--created
+    get_child = () => {
+        this.setState({
+            child: this.refs.two.state.name
+        })
+    }
+
+    componentWillMount = () => {  // 组件创建前--created
         console.log('componentWillMount')
     }
-    componentDidMount() {  // 组件挂在上--mounted
+    componentDidMount = () => {  // 组件挂在上--mounted
         console.log('componentDidMount')
     }
 
-    componentWillUnmount() { // 离开--destoryed
+    componentWillUnmount = () => { // 离开--destoryed
         console.log('componentWillUnmount')
     }
 
@@ -83,15 +88,15 @@ export default class One extends React.Component {
             <button onClick={this.use_state}>绑定事件，改变组件自己的数据 2 use_state</button>
 
             <p className='classd'>使用class样式 </p>
-            <p >获取输入属性： {this.state.props_data}</p>
+            {/* <p >获取输入属性(父->子)： {this.props.obj.name}</p> */}
             <button onClick={(e) => this.changeFn(e, 9)}>传参并改变传入数据 changeFn</button>
 
             <p style={{ color: 'red' }}>使用class样式</p>
 
             <label htmlFor="labeld">label写法：</label>
             <input id="labeld" defaultValue="设置初始默认值" onChange={this.show_input}></input>&nbsp;
-            <span>监听数据的变化：{this.state.input_data}</span>
-            
+            <span>监听数据的变化：{this.state.input_data}</span><br />
+            <button onClick={this.get_child}>获取子组件的数据 get_child</button>&nbsp;<span>{this.state.child}</span>
             <div>
                 <h3>表单</h3>
                 <form>
@@ -100,8 +105,7 @@ export default class One extends React.Component {
                     </select>
                 </form>
             </div>
-            <Two />
-            <Three />
+            <Two ref="two" />
         </div>
         )
     };
